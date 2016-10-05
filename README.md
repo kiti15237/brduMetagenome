@@ -17,3 +17,14 @@
 
 ###Convert the unmapped reads back to fastq format for future analysis
 `samtools bam2fq test.unmapped.bam > test.unmapped.fastq`
+
+
+1) split files into chunks
+split --bytes 100M --numeric-suffixes --suffix-length=3 --additional-suffix=.fastq forward/2119.4.1770.fastq test1/forward/2119.4.1770.
+
+2) add .fastq suffixes to everything
+cd forward
+for f in *; do mv "$f" "${f}.fastq"; done
+cd reverse 
+ for f in *; do mv "$f" "${f}.fastq"; done
+
